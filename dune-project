@@ -1,6 +1,6 @@
 (lang dune 3.16)
 
-(name test_maker_2)
+(name test_maker)
 
 (generate_opam_files true)
 
@@ -16,7 +16,7 @@
 (documentation https://url/to/documentation)
 
 (package
- (name test_maker_2)
+ (name test_maker)
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends ocaml dune)

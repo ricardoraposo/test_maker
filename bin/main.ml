@@ -1,4 +1,4 @@
-open Test_maker_2
+open Test_maker
 
 let print_tuples (a,b) =
 Printf.printf "(%s, %s)\n" a b
