@@ -1,0 +1,3 @@
+(library
+ (name test_maker_2)
+ (libraries re))
