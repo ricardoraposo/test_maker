@@ -15,13 +15,14 @@ let find_constructor tokens =
     | [] -> acc
     | token :: rest ->
       match token with
-      | "constructor(" -> 
+      | "constructor(" | "constructor(private" -> 
         let rec extract_constructor_params params_acc remaining_tokens =
           match remaining_tokens with
           | [] -> process_tokens rest (List.rev params_acc @ acc)
           | hd :: tl -> 
             match hd with
             | ")" -> process_tokens rest (List.rev params_acc @ acc)
+            | hd when String.contains hd ')' -> process_tokens rest (List.rev (remove_last hd :: params_acc)  @ acc)
             | "private" | "readonly" -> extract_constructor_params params_acc tl
             | _ -> extract_constructor_params (remove_last hd :: params_acc) tl
         in
