@@ -14,6 +14,8 @@ let () =
     Writer.write_header file test_subject;
     Writer.write_let_statements file import_methods;
     Writer.write_mocks file import_methods test_subject;
-    Writer.write_modules_gets file import_methods test_subject
+    Writer.write_modules_gets file import_methods test_subject;
+
+    print_endline "Já agradeceu o raposo hoje ?"
 ;;
 
