@@ -1,5 +1,16 @@
 let remove_last s = String.sub s 0 (String.length s - 1)
 
+let rec get_main_class lines =
+  match lines with
+  | [] -> None
+  | hd :: tl ->
+    let regex = Re.compile Re.(seq [str "export class "; group(rep1 alpha)]) in
+    try
+      let result = Re.exec regex hd in
+      Some (Re.Group.get result 1)
+    with
+      Not_found ->  get_main_class tl;;
+
 let split_lines lines  =
   let rec aux list acc =
     match list with
@@ -8,8 +19,7 @@ let split_lines lines  =
         let words = List.rev (String.split_on_char ' ' (String.trim hd)) in
         aux tl (words @ acc)
   in aux lines [];;
-
-
+    
 let should_ignore token =
   match token with
   | "readonly"

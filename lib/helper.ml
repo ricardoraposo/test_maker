@@ -28,3 +28,11 @@ let remove_duplicates lst =
         aux (hd :: seen) (hd :: acc) tl  (* Add to seen and result *)
   in
   aux [] [] lst;;
+
+let replace_last_three_chars str replacement =
+  let len = String.length str in
+  if len <= 3 then
+    replacement  (* If the string is shorter than or equal to 3 characters, replace the whole string *)
+  else
+    let prefix = String.sub str 0 (len - 3) in
+    prefix ^ replacement;;

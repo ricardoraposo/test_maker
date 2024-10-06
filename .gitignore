@@ -25,6 +25,7 @@ src/dune_rules/setup.ml
 result
 
 test.ts
+test.spec.ts
 
 .DS_Store
 nix/profiles/
