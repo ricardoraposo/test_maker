@@ -9,9 +9,10 @@ test_maker "path_to_ts_file"
 ```
 
 ## How to build it
-Make sure you have ocaml and dune installed
+Make sure you have opam and dune installed
 
 ```sh
+opam install . --deps-only
 dune build
 ```
 
