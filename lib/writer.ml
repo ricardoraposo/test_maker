@@ -26,7 +26,7 @@ let write_mocks f params subject =
       let message = Printf.sprintf "            %s: jest.fn()," method_name in
       write_to_file ~filename:(make_test_file f) ~message:message
     ) methods;
-    write_to_file ~filename:(make_test_file f) ~message:"        },";
+    write_to_file ~filename:(make_test_file f) ~message:"          },\n        },";
   ) params;
   write_to_file ~filename:(make_test_file f) ~message:"      ],\n    }).compile()\n";;
 
