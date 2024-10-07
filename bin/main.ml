@@ -16,6 +16,6 @@ let () =
     Writer.write_mocks file import_methods test_subject;
     Writer.write_modules_gets file import_methods test_subject;
 
-    print_endline "Já agradeceu o raposo hoje ?"
+    print_endline "Já agradeceu o raposo hoje?"
 ;;
 
