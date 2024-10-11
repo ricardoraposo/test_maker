@@ -3,7 +3,7 @@
 Grab yourself a pre built binary, hope it works.
 If it doesn't, you can build it yourself, it's easy.
 
-## Install guide
+## Installation
 ### Linux
 
 ```sh
