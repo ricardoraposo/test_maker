@@ -23,7 +23,7 @@ let write_mocks f params subject =
     let message = Printf.sprintf "        {\n          provide: %s,\n          useValue: {" class_name in
     write_to_file ~filename:(make_test_file f) ~message:message;
     List.iter (fun method_name ->
-      let message = Printf.sprintf "            %s: jest.fn()," method_name in
+      let message = Printf.sprintf "            %s: vi.fn()," method_name in
       write_to_file ~filename:(make_test_file f) ~message:message
     ) methods;
     write_to_file ~filename:(make_test_file f) ~message:"          },\n        },";
