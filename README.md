@@ -7,15 +7,15 @@ If it doesn't, you can build it yourself, it's easy.
 ### Linux
 
 ```sh
-wget https://github.com/ricardoraposo/test_maker/releases/download/v1.1/test_maker_linux.zip
-unzip test_maker_linux.zip
+wget https://github.com/ricardoraposo/test_maker/releases/download/v1.2/test_maker_linux.tar
+tar -xf test_maker_linux.tar
 sudo mv test_maker /usr/local/bin
 ```
 
 ### MacOS
 
 ```sh
-wget https://github.com/ricardoraposo/test_maker/releases/download/v1.1/test_maker_osx.zip
+wget https://github.com/ricardoraposo/test_maker/releases/download/v1.2/test_maker_osx.zip
 unzip test_maker_osx.zip
 sudo mv test_maker /usr/local/bin
 ```
