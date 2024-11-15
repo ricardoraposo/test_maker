@@ -1,4 +1,0 @@
-(executable
- (public_name test_maker)
- (name main)
- (libraries str re test_maker))
