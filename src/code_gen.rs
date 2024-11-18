@@ -36,7 +36,7 @@ pub fn write_mocks(mut buf: &File, modules: &[Module], main_class: &str) {
 }
 
 pub fn write_module_gets(mut buf: &File, modules: &[Module], main_class: &str) {
-    write!(buf, "    subject = module.get<{main_class}>({main_class})\n").unwrap();
+    writeln!(buf, "    subject = module.get<{main_class}>({main_class})").unwrap();
 
     for module in modules {
         let st = format!(
@@ -45,9 +45,14 @@ pub fn write_module_gets(mut buf: &File, modules: &[Module], main_class: &str) {
         );
         write!(buf, "{st}").unwrap()
     }
-    write!(
-        buf,
-        "  }})\n\n  describe('these are gonna be really cool tests', () => {{}})\n}})"
-    )
-    .unwrap();
+
+    write!(buf, "  }})").unwrap();
+
+    for module in modules {
+        for function in &module.class.functions {
+            write!(buf, "\n\n  describe('{function}', () => {{}})").unwrap();
+        }
+    }
+
+    write!(buf, "\n}})").unwrap();
 }

@@ -5,6 +5,7 @@ use std::collections::HashSet;
 pub struct Class {
     pub variable: String,
     pub name: String,
+    pub functions: Vec<String>,
 }
 
 #[derive(Debug)]
@@ -16,11 +17,7 @@ pub struct Module {
 pub fn get_main_name(file: &str) -> Option<String> {
     let re = Regex::new(r"export class (?<name>\w+) \{").unwrap();
 
-    if let Some(cap) = re.captures(file) {
-        Some(cap["name"].to_string())
-    } else {
-        None
-    }
+    re.captures(file).map(|cap| cap["name"].to_string())
 }
 
 pub fn get_modules(file: &str) -> Option<Vec<Class>> {
@@ -36,6 +33,7 @@ pub fn get_modules(file: &str) -> Option<Vec<Class>> {
                 modules.push(Class {
                     variable: capture["variable"].to_string(),
                     name: capture["class"].to_string(),
+                    functions: get_functions(file),
                 })
             }
         }
@@ -69,4 +67,21 @@ pub fn get_methods(file: &str, modules: Vec<Class>) -> Vec<Module> {
     }
 
     func_calls
+}
+
+fn get_functions(file: &str) -> Vec<String> {
+    let method_regex =
+        Regex::new(r"(?m)^\s*(?:private\s+|public\s+|async\s+)?(\w+)\([^)]*\)\s*(?::\s*[^{]+)?")
+            .expect("Invalid regex pattern");
+    method_regex
+        .captures_iter(file)
+        .filter_map(|caps| {
+            let method_name = caps.get(1)?.as_str().to_string();
+            if method_name != "constructor" {
+                Some(method_name)
+            } else {
+                None
+            }
+        })
+        .collect()
 }
