@@ -32,7 +32,7 @@ pub fn write_mocks(mut buf: &File, modules: &[Module], main_class: &str) {
         }
         write!(buf, "          }},\n        }},\n").unwrap()
     }
-    write!(buf, "      ],\n    }}).compile()\n").unwrap()
+    write!(buf, "      ],\n    }}).compile()\n\n").unwrap()
 }
 
 pub fn write_module_gets(
