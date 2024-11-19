@@ -49,7 +49,7 @@ pub fn write_module_gets(mut buf: &File, modules: &[Module], main_class: &str) {
     write!(buf, "  }})").unwrap();
 
     for module in modules {
-        for function in &module.class.functions {
+        for function in &module.functions {
             write!(buf, "\n\n  describe('{function}', () => {{}})").unwrap();
         }
     }

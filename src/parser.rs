@@ -5,13 +5,13 @@ use std::collections::HashSet;
 pub struct Class {
     pub variable: String,
     pub name: String,
-    pub functions: Vec<String>,
 }
 
 #[derive(Debug)]
 pub struct Module {
     pub class: Class,
     pub methods: Vec<String>,
+    pub functions: Vec<String>,
 }
 
 pub fn get_main_name(file: &str) -> Option<String> {
@@ -33,7 +33,6 @@ pub fn get_modules(file: &str) -> Option<Vec<Class>> {
                 modules.push(Class {
                     variable: capture["variable"].to_string(),
                     name: capture["class"].to_string(),
-                    functions: get_functions(file),
                 })
             }
         }
@@ -63,6 +62,7 @@ pub fn get_methods(file: &str, modules: Vec<Class>) -> Vec<Module> {
         func_calls.push(Module {
             class: module,
             methods: methods.into_iter().collect(),
+            functions: get_functions(file),
         });
     }
 
