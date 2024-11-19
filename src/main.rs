@@ -42,20 +42,21 @@ fn main() {
 
     let filepath = helper::replace_last_three(path, ".spec.ts");
 
-    let buffer = OpenOptions::new()
-        .write(true)
-        .append(true)
-        .create(true)
-        .open(filepath);
+    let buffer = OpenOptions::new().append(true).create(true).open(filepath);
 
     match buffer {
         Ok(buffer) => {
             code_gen::write_header(&buffer, &name);
             code_gen::write_let_statements(&buffer, &function_calls);
             code_gen::write_mocks(&buffer, &function_calls, &name);
-            code_gen::write_module_gets(&buffer, &function_calls, &name);
+            code_gen::write_module_gets(
+                &buffer,
+                &function_calls,
+                &name,
+                parser::get_functions(&file),
+            );
 
-            println!("Obrigado, Raposo!!!")
+            println!("Obrigado, Raposo e fe!!!")
         }
         Err(_) => {
             println!("Failed reading dest. file")
