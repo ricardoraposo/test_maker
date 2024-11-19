@@ -11,7 +11,6 @@ pub struct Class {
 pub struct Module {
     pub class: Class,
     pub methods: Vec<String>,
-    pub functions: Vec<String>,
 }
 
 pub fn get_main_name(file: &str) -> Option<String> {
@@ -62,14 +61,13 @@ pub fn get_methods(file: &str, modules: Vec<Class>) -> Vec<Module> {
         func_calls.push(Module {
             class: module,
             methods: methods.into_iter().collect(),
-            functions: get_functions(file),
         });
     }
 
     func_calls
 }
 
-fn get_functions(file: &str) -> Vec<String> {
+pub fn get_functions(file: &str) -> Vec<String> {
     let method_regex =
         Regex::new(r"(?m)^\s*(?:private\s+|public\s+|async\s+)?(\w+)\([^)]*\)\s*(?::\s*[^{]+)?")
             .expect("Invalid regex pattern");

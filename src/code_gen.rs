@@ -35,7 +35,12 @@ pub fn write_mocks(mut buf: &File, modules: &[Module], main_class: &str) {
     write!(buf, "      ],\n    }}).compile()\n").unwrap()
 }
 
-pub fn write_module_gets(mut buf: &File, modules: &[Module], main_class: &str) {
+pub fn write_module_gets(
+    mut buf: &File,
+    modules: &[Module],
+    main_class: &str,
+    functions: Vec<String>,
+) {
     writeln!(buf, "    subject = module.get<{main_class}>({main_class})").unwrap();
 
     for module in modules {
@@ -48,10 +53,8 @@ pub fn write_module_gets(mut buf: &File, modules: &[Module], main_class: &str) {
 
     write!(buf, "  }})").unwrap();
 
-    for module in modules {
-        for function in &module.functions {
-            write!(buf, "\n\n  describe('{function}', () => {{}})").unwrap();
-        }
+    for function in functions {
+        write!(buf, "\n\n  describe('{function}', () => {{}})").unwrap();
     }
 
     write!(buf, "\n}})").unwrap();

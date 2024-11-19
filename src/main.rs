@@ -49,7 +49,12 @@ fn main() {
             code_gen::write_header(&buffer, &name);
             code_gen::write_let_statements(&buffer, &function_calls);
             code_gen::write_mocks(&buffer, &function_calls, &name);
-            code_gen::write_module_gets(&buffer, &function_calls, &name);
+            code_gen::write_module_gets(
+                &buffer,
+                &function_calls,
+                &name,
+                parser::get_functions(&file),
+            );
 
             println!("Obrigado, Raposo e fe!!!")
         }
