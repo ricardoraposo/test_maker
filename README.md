@@ -8,7 +8,7 @@ If it doesn't, you can build it yourself, it's easy.
 
 ```sh
 wget https://github.com/ricardoraposo/test_maker/releases/download/v1.4/test-maker-linux-x64.tar.gz
-tar -xf test-maker-linux-x64.tar
+tar -xf test-maker-linux-x64.tar.gz
 sudo mv test_maker /usr/local/bin
 ```
 
