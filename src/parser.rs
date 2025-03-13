@@ -69,7 +69,7 @@ pub fn get_methods(file: &str, modules: Vec<Class>) -> Vec<Module> {
 
 pub fn get_functions(file: &str) -> Vec<String> {
     let method_regex =
-        Regex::new(r"(?m)^\s*(?:private\s+|public\s+|async\s+)?(\w+)\([^)]*\)\s*(?::\s*[^{]+)?")
+        Regex::new(r"(?m)^\s*(?:private\s+|public\s+|async\s+|private async\s+)?(\w+)\([^)]*\)\s*(?::\s*[^{]+)?")
             .expect("Invalid regex pattern");
     method_regex
         .captures_iter(file)
